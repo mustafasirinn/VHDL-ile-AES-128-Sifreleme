@@ -1,6 +1,7 @@
 # FPGA Üzerinde VHDL ile AES-128 Şifreleme (1 Tur)
 ## 1. AES ŞİFRELEME
 AES (Rijndael-Gelişmiş Şifreleme Standardı) algoritması 128 bit veri bloklarını 128, 192, 256 bit anahtar seçenekleri ile şifreleyen simetrik şifreleme algoritmasıdır. Döngü sayısı anahtar genişliğine göre değişmektedir. 128 bit anahtar için 10 döngüde şifreleme yaparken 192 ve 256 bit anahtarlar için sırasıyla 12 ve 14 döngüde şifreleme yapmaktadır. AES-128 10 çevrimdir. İlk olarak Anahtarı Ekleme adımı gerçekleşir. Bu aşamadan sonra 10 çevrim gerçekleşir. Her çevrim sırasıyla Bayt Değiştirme, Satırları kaydırma, Sütunları karıştırma ve Tur Anahtarını Ekleme işlemlerinden oluşur. Son çevrim olan onuncu çevrimde Sütunları Karıştırma adımı uygulanmaz.
+
 Aşağıdaki görselde AES-128 algoritmasının tamamı adımlar halinde gösterilmiştir.
 
 ![1](https://sirinoloji.com/github/aes128-vhdl/1.png)
@@ -62,11 +63,14 @@ Component kodlarını yazdıktan sonra sistemimizin modeline uygun olarak ana ko
 ![15](https://sirinoloji.com/github/aes128-vhdl/15.png)
 
 Burada yer alan sinyaller ana kodda tanımlanmış ve işleme sokulmuştur. Modelde yer alan 5 adım için gerekli kodlar Bölüm 2.1’de sırasıyla verilmiştir.
+
 Ana kodumuz; 3 giriş ve 1 çıkış değişkenine sahiptir. Girişlerden bir tanesi şifrelenmemiş metin (metin), bir tanesi şifreleme anahtarı (anahtar) ve sonuncusu ise ilk tur anahtarıdır (adimanahtari). Çıkışımız ise AES-128 algoritması ile 1 tur şifrelenmiş metindir (sifrelimetin). Tüm değişkenlerimiz 128 bit boyutundadır.  Ayrıca baslangic, skutusinyal, satirksinyal, sifrelisinyal, sutunksinyal isimlerinde tanımladığımız 5 tane sinyalimiz bulunmaktadır.
 
 ## 3. SİSTEMİN SİMÜLASYON ÜZERİNDE TESTİ
 Sisteme ait kodlar **Quartus** programında oluşturulmuştur.
+
 **ModelSim** programı üzerinde kodumuz çalışır yapısı aşağıdaki giriş değişkenleri kullanılarak simüle edilmiştir.  Çıkışını bildiğimiz girişleri deneyerek sistemimizin doğruluğunu test ediyoruz.
+
 Sisteme verilen girişlerle çıkışta alınan şifrelenmiş metin çıktısı örneği (AES-128 İlk Tur) aşağıda verilmiş, sonuç kırmızı dörtgen içerisine alınmıştır.
 
 ![16](https://sirinoloji.com/github/aes128-vhdl/16.png)
